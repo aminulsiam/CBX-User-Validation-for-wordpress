@@ -1,0 +1,5 @@
+#RewriteEngine On
+#RewriteRule ^dashboard.html?$ dashboard_admin.php
+#RewriteRule ^index.html?$ index.php
+#RewriteRule ^add_category.html?$ add_category.php
+#RewriteRule ^manage_category.asp?$ manage_category.php
