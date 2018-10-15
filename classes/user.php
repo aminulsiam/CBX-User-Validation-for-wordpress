@@ -33,7 +33,7 @@ class User
         $email      = $this->validate->validate($data['email']);
         $password   = md5($data['password']);
 
-        // insert user data
+        // Insert user data
 
         $query = "INSERT INTO users(first_name,last_name,email,password) VALUES 
         ('$first_name','$last_name','$email ','$password')";
@@ -43,5 +43,12 @@ class User
             return $message;
         }
     }
+
+
+
+
+
+
+
 
 }// end class

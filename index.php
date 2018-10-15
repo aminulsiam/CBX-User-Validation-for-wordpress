@@ -58,8 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="form-group">
                     <label for="exampleInputPassword1"><b>Password</b></label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                           placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
                 </div>
 
                 <button type="submit" name="btn" class="btn btn-primary btn-block">Submit</button>
