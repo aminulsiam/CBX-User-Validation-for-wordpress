@@ -31,6 +31,7 @@ class User
         $last_name  = $this->validate->validate($data['last_name']);
         $email      = $this->validate->validate($data['email']);
         $password   = md5($data['password']);
+        // insert user data
         $query = "INSERT INTO users(first_name,last_name,email,password) VALUES 
         ('$first_name','$last_name','$email ','$password')";
         $store = $this->db->insert($query);
