@@ -39,4 +39,5 @@ class User
             return $message;
         }
     }
-}
+
+}// end class
