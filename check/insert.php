@@ -3,7 +3,6 @@
 use Frontend\Validate\Validation;
 use PHPMailer\PHPMailer\PHPMailer;
 
-
 if (isset($_POST['aminul_form']) && intval($_POST['aminul_form']) == 1) {
 
     require_once "../classes/validation.php";
@@ -38,7 +37,6 @@ if (isset($_POST['aminul_form']) && intval($_POST['aminul_form']) == 1) {
         $validated = false;
         $error['password'] = 'password is empty';
     }
-
     $messages = array();
     $messages['validation_message'] = $error;
 
@@ -87,23 +85,8 @@ if (isset($_POST['aminul_form']) && intval($_POST['aminul_form']) == 1) {
         } else {
             $process_messages['insert'] = 'Database insert failed';
         }
-
-
-
-
-        $email_ok = 1;
-
-        //send email
-        if ($email_ok) {
-
-
-
-        }
-
         $messages['process_message'] = $process_messages;
-
     }
-
     echo json_encode($messages);
     die();
 }
