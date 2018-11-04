@@ -42,6 +42,27 @@ class User
 //        }
     }
 
+    // select all user data
+    public function userData()
+    {
+        $query = "SELECT * From users ORDER BY id DESC";
+        return $this->db->select($query);
+    }
+
+    // user edit form
+    public function edit($id)
+    {
+        $query = "SELECT * FROM users WHERE id='$id'";
+        return $this->db->select($query);
+    }
+
+    // delete user data
+    public function delete($id)
+    {
+        $query = "DELETE FROM users WHERE id='$id'";
+        return $this->db->delete($query);
+    }
+
 
 
 

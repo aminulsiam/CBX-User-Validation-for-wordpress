@@ -63,28 +63,31 @@ jQuery(document).ready(function ($) {
 
                         var $validation_messages = response.validation_message;
 
-                         for(var field_key in $validation_messages){
+                        for (var field_key in $validation_messages) {
 
-                             var message = $validation_messages[field_key];
+                            var message = $validation_messages[field_key];
 
-                             var label_id = field_key+'-error';
+                            var label_id = field_key + '-error';
 
-                             if($form.find('#'+label_id).length > 0){
-                                 $form.find('#'+label_id).show();
-                                 $form.find('#'+label_id).html(message);
-                             }
-                             else{
-                                 $( '<label class="error" id="'+field_key+'-error" for="'+field_key+'">'+message+'</label>' ).insertAfter($form.find('#'+field_key));
-                             }
+                            if ($form.find('#' + label_id).length > 0) {
+                                $form.find('#' + label_id).show();
+                                $form.find('#' + label_id).html(message);
+                            }
+                            else {
+                                $('<label class="error" id="' + field_key + '-error" for="' + field_key + '">' + message + '</label>').insertAfter($form.find('#' + field_key));
+                            }
 
-                             //add error class to the input field to match with the js validation api
-                             $('#'+field_key).removeClass('valid').addClass('error');
+                            //add error class to the input field to match with the js validation api
+                            $('#' + field_key).removeClass('valid').addClass('error');
                         }
 
                         // success message
-                        var process_message = response.process_message;
-                        console.log(process_message);
-                        $form.find('.process_message').html(process_message);
+                        var process_message = response.process_message['insert'];
+
+                        if (process_message != null) {
+                            $form.find('.process_message').html(process_message);
+                            $form.find('.form-control').val('');
+                        }
                     }
                 });
             }
@@ -92,6 +95,11 @@ jQuery(document).ready(function ($) {
             e.preventDefault();
         }
     });    //form submit end
+
+});
+
+$(document).ready(function () {
+    $('#datatable').DataTable();
 });
 
 
