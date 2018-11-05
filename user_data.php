@@ -74,10 +74,10 @@ if (isset($_POST['check_delete'])) {
                         <input type="checkbox" id="checkItem" name="check[]" value="<?php echo $data['id']; ?>">
                     </th>
                     <th><?php echo $i++; ?></th>
-                    <td><?php echo $data['first_name']; ?></td>
-                    <td><?php echo $data['last_name']; ?></td>
+                    <td id="first_name"><?php echo $data['first_name']; ?></td>
+                    <td id="last_name"><?php echo $data['last_name']; ?></td>
                     <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
-                    <td><?php echo $data['email']; ?></td>
+                    <td id="email"><?php echo $data['email']; ?></td>
                     <td>
                         <a class="btn btn-info" href="edit.php?id=<?php echo $data['id']; ?>">
                             edit
@@ -91,31 +91,18 @@ if (isset($_POST['check_delete'])) {
 </div>
 <?php require_once "partials/footer.php" ?>
 <script type="text/javascript">
-    // user delete
-    // function deleteUser(id) {
-    //     var check = confirm("Are you sure want to delete this ??? ");
-    //     if (check) {
-    //         var id = id;
-    //         jQuery.ajax({
-    //             method: "POST",
-    //             url: "check/delete_user.php",
-    //             data: {id: id},
-    //             success: function (response) {
-    //                 if (response == 1) {
-    //                     var msg = "Profile deleted successfullly";
-    //                     $('#delete_message').html(msg);
-    //                     $("#" + id).hide(1200);
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
 
     // check all
     $("#check_all").click(function () {
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
 
+
+    //turn on to inline update
+    $.fn.editable.defaults.mode = 'inline';
+    $(document).ready(function() {
+        $("#first_name,#email,#last_name").editable();
+    });
 
 </script>
 

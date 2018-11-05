@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="assets/css/jqueryui-editable.css">
     <title>Registration form</title>
 
     <style>
