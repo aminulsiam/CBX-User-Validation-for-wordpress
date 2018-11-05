@@ -61,13 +61,25 @@ class User
     {
         $query = "DELETE FROM users WHERE id='$id'";
         return $this->db->delete($query);
+        header('location:user_data.php');
     }
 
+    // update user
+    public function update($data)
+    {
+        $first_name = $this->validate->validate($data['first_name']);
+        $last_name  = $this->validate->validate($data['last_name']);
+        $email      = $this->validate->validate($data['email']);
+        $id         = (int)$data['id'];
 
-
-
-
-
+        $query = "UPDATE users SET first_name='$first_name',last_name='$last_name',email='$email' WHERE id='$id' ";
+        $update = $this->db->update($query);
+        if($update){
+            session_start();
+            $_SESSION['msg'] = "Profile updated successfully";
+            header("location:user_data.php");
+        }
+    }
 
 
 }// end class

@@ -95,12 +95,8 @@ jQuery(document).ready(function ($) {
             e.preventDefault();
         }
     });    //form submit end
-
 });
 
-$(document).ready(function () {
-    $('#datatable').DataTable();
-});
 
 
 

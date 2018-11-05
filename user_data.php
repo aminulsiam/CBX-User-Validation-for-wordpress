@@ -23,6 +23,14 @@ if (isset($_GET['delete'])) {
 </div>
 
 <div class="col-md-12">
+    <h3 class="text-center text-success">
+        <?php
+        if (isset($_SESSION['msg'])) {
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+        ?>
+    </h3>
     <hr>
     <table class="table table-responsive-sm" id="datatable">
         <thead class="thead-light">
@@ -40,7 +48,7 @@ if (isset($_GET['delete'])) {
         $i = 1;
         foreach ($value as $data) {
             ?>
-            <tr>
+            <tr id="<?php echo $data['id']; ?>">
                 <th><?php echo $i++; ?></th>
                 <td><?php echo $data['first_name']; ?></td>
                 <td><?php echo $data['last_name']; ?></td>
@@ -50,25 +58,35 @@ if (isset($_GET['delete'])) {
                     <a href="edit.php?id=<?php echo $data['id']; ?>">
                         <button class="btn btn-primary">edit</button>
                     </a>
-                    <a href="?delete=<?php echo $data['id']; ?>">
-                        <button class="btn btn-danger"
-                                onclick="return confirm('Are you sure want to delete this ??? ')">delete
-                        </button>
-                    </a>
+
+                    <button class="btn btn-danger" onclick="deleteUser(<?php echo $data['id']; ?>)">
+                        delete
+                    </button>
+
                 </td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
-
-
 <?php require_once "partials/footer.php" ?>
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
-<!--<script src="https://cdn.datatables.net/1.10.19/js/dataTables.jqueryui.min.js"></script>-->
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#datatable').DataTable();
-    });
+    // user delete
+    function deleteUser(id) {
+        var check = confirm("Are you sure want to delete this ??? ");
+        if (check) {
+            var id = id;
+            jQuery.ajax({
+                method: "POST",
+                url: "check/delete_user.php",
+                data: {id: id},
+                success: function (response) {
+                    if (response == 1) {
+                        $("#" + id).hide(1200);
+                    }
+                }
+            });
+        }
+    }
 </script>
+
