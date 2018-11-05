@@ -11,6 +11,19 @@ if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $user->delete($id);
 }
+
+if (isset($_POST['check_delete'])) {
+    require_once "db/db.php";
+    $db = new DB();
+    $checkbox = $_POST['check'];
+    for ($i = 0; $i < count($checkbox); $i++) {
+        $del_id = $checkbox[$i];
+        $query = "DELETE FROM users WHERE id='" . $del_id . "'";
+        if ($db->delete($query)) {
+            header('location:user_data.php');
+        }
+    }
+}
 ?>
 
 <div class="col-md-6">
@@ -32,42 +45,53 @@ if (isset($_GET['delete'])) {
         ?>
     </h3>
     <hr>
-    <table class="table table-responsive-sm" id="datatable">
-        <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th>First</th>
-            <th>Last</th>
-            <th>Full name</th>
-            <th>Email</th>
-            <th class="checkbox">Action <input type="checkbox"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $i = 1;
-        foreach ($value as $data) {
-            ?>
-            <tr id="<?php echo $data['id']; ?>">
-                <th><?php echo $i++; ?></th>
-                <td><?php echo $data['first_name']; ?></td>
-                <td><?php echo $data['last_name']; ?></td>
-                <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
-                <td><?php echo $data['email']; ?></td>
-                <td>
-                    <a href="edit.php?id=<?php echo $data['id']; ?>">
-                        <button class="btn btn-primary">edit</button>
-                    </a>
+    <form action="" method="post">
+        <table class="table table-responsive-sm" id="datatable">
+            <thead class="thead-light">
+            <tr>
+                <th>
+                    <input type="checkbox" id="check_all" value="select"> Select
+                    <input type="submit" name="check_delete" value="delete" class="btn btn-danger">
 
-                    <button class="btn btn-danger" onclick="deleteUser(<?php echo $data['id']; ?>)">
-                        delete
-                    </button>
 
-                </td>
+                </th>
+                <th>#</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th class="checkbox">Action</th>
             </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php
+            $i = 1;
+            foreach ($value as $data) {
+                ?>
+                <tr id="<?php echo $data['id']; ?>">
+                    <th class="text-center">
+                        <input type="checkbox" id="checkItem" name="check[]" value="<?php echo $data['id']; ?>">
+                    </th>
+                    <th><?php echo $i++; ?></th>
+                    <td><?php echo $data['first_name']; ?></td>
+                    <td><?php echo $data['last_name']; ?></td>
+                    <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
+                    <td><?php echo $data['email']; ?></td>
+                    <td>
+                        <a href="edit.php?id=<?php echo $data['id']; ?>">
+                            <button class="btn btn-primary">edit</button>
+                        </a>
+
+<!--                        <button class="btn btn-danger" onclick="deleteUser()">-->
+<!--<!--                            delete-->
+<!--                        </button>-->
+
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+   </form>
 </div>
 <?php require_once "partials/footer.php" ?>
 <script type="text/javascript">
@@ -88,5 +112,12 @@ if (isset($_GET['delete'])) {
             });
         }
     }
+
+    // check all
+    $("#check_all").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+
 </script>
 

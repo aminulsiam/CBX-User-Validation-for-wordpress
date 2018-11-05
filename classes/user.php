@@ -56,14 +56,6 @@ class User
         return $this->db->select($query);
     }
 
-    // delete user data
-    public function delete($id)
-    {
-        $query = "DELETE FROM users WHERE id='$id'";
-        return $this->db->delete($query);
-        header('location:user_data.php');
-    }
-
     // update user
     public function update($data)
     {
@@ -79,6 +71,22 @@ class User
             $_SESSION['msg'] = "Profile updated successfully";
             header("location:user_data.php");
         }
+    }
+
+    // delete user data
+    public function delete($id)
+    {
+        $query = "DELETE FROM users WHERE id='$id'";
+        return $this->db->delete($query);
+        header('location:user_data.php');
+    }
+
+    // delete multiple user
+    public function deleteMultipleUser($id)
+    {
+        $query = "DELETE FROM users WHERE id='$id'";
+        return $this->db->delete($query);
+        header('location:user_data.php');
     }
 
 

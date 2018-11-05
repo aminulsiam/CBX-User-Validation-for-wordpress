@@ -63,8 +63,8 @@ if (isset($_POST['aminul_form']) && intval($_POST['aminul_form']) == 1) {
             $mail->isSMTP();                           // Set mailer to use SMTP
             $mail->Host = 'smtp.mailtrap.io';          // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                    // Enable SMTP authentication
-            $mail->Username = 'f3532b7f6dbf28';        // SMTP username
-            $mail->Password = '8d7341193e25c7';        // SMTP password
+            $mail->Username = 'a9e769c03c0a91';        // SMTP username
+            $mail->Password = '70ae8cd3cdbce9';        // SMTP password
             $mail->SMTPSecure = 'tls';                 // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 465;                          // TCP port to connect to
 

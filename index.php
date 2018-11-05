@@ -1,36 +1,5 @@
 <?php
 require_once "partials/header.php";
-
-use PHPMailer\PHPMailer\PHPMailer;
-
-//Load Composer's autoloader
-//require 'vendor/autoload.php';
-//
-//$mail = new PHPMailer;
-//$mail->SMTPDebug = 0;
-//$mail->isSMTP();                           // Set mailer to use SMTP
-//$mail->Host = 'smtp.mailtrap.io';          // Specify main and backup SMTP servers
-//$mail->SMTPAuth = true;                    // Enable SMTP authentication
-//$mail->Username = 'f3532b7f6dbf28';        // SMTP username
-//$mail->Password = '8d7341193e25c7';        // SMTP password
-//$mail->SMTPSecure = 'tls';                 // Enable TLS encryption, `ssl` also accepted
-//$mail->Port = 465;                          // TCP port to connect to
-//
-//$mail->From = 'aminul@gmail.com';
-//$mail->FromName = 'Mailer';
-//
-//$mail->addAddress('aminulhossain90@gmail.com');      // Name is optional
-//$mail->isHTML(true);      // Set email format to HTML
-//
-//$mail->Subject = 'Mail testing only';
-//$mail->Body = 'This is the mail test <b>in bold!</b>';
-//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-//
-//if (!$mail->send()) {
-//    echo 'Message could not be sent.';
-//    echo 'Mailer Error: ' . $mail->ErrorInfo;
-//}
-
 ?>
 <div class="col-md-6 offset-3">
     <h1 class="text-center">You can register here</h1>
