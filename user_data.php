@@ -12,6 +12,8 @@ if (isset($_GET['delete'])) {
     $user->delete($id);
 }
 
+
+// multiple user profile deleted
 if (isset($_POST['check_delete'])) {
     require_once "db/db.php";
     $db = new DB();
@@ -20,6 +22,7 @@ if (isset($_POST['check_delete'])) {
         $del_id = $checkbox[$i];
         $query = "DELETE FROM users WHERE id='" . $del_id . "'";
         if ($db->delete($query)) {
+            $_SESSION['msg'] = "Data deleted successfully";
             header('location:user_data.php');
         }
     }
@@ -36,7 +39,7 @@ if (isset($_POST['check_delete'])) {
 </div>
 
 <div class="col-md-12">
-    <h3 class="text-center text-success">
+    <h3 class="text-center text-success" id="delete_message">
         <?php
         if (isset($_SESSION['msg'])) {
             echo $_SESSION['msg'];
@@ -51,16 +54,14 @@ if (isset($_POST['check_delete'])) {
             <tr>
                 <th>
                     <input type="checkbox" id="check_all" value="select"> Select
-                    <input type="submit" name="check_delete" value="delete" class="btn btn-danger">
-
-
+                    <input type="submit" name="check_delete"  onclick="return confirm('Are you sure want to delete this ??? ')" value="delete" class="btn btn-danger">
                 </th>
                 <th>#</th>
                 <th>First</th>
                 <th>Last</th>
                 <th>Full name</th>
                 <th>Email</th>
-                <th class="checkbox">Action</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -78,40 +79,37 @@ if (isset($_POST['check_delete'])) {
                     <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
                     <td><?php echo $data['email']; ?></td>
                     <td>
-                        <a href="edit.php?id=<?php echo $data['id']; ?>">
-                            <button class="btn btn-primary">edit</button>
+                        <a class="btn btn-info" href="edit.php?id=<?php echo $data['id']; ?>">
+                            edit
                         </a>
-
-<!--                        <button class="btn btn-danger" onclick="deleteUser()">-->
-<!--<!--                            delete-->
-<!--                        </button>-->
-
                     </td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
-   </form>
+    </form>
 </div>
 <?php require_once "partials/footer.php" ?>
 <script type="text/javascript">
     // user delete
-    function deleteUser(id) {
-        var check = confirm("Are you sure want to delete this ??? ");
-        if (check) {
-            var id = id;
-            jQuery.ajax({
-                method: "POST",
-                url: "check/delete_user.php",
-                data: {id: id},
-                success: function (response) {
-                    if (response == 1) {
-                        $("#" + id).hide(1200);
-                    }
-                }
-            });
-        }
-    }
+    // function deleteUser(id) {
+    //     var check = confirm("Are you sure want to delete this ??? ");
+    //     if (check) {
+    //         var id = id;
+    //         jQuery.ajax({
+    //             method: "POST",
+    //             url: "check/delete_user.php",
+    //             data: {id: id},
+    //             success: function (response) {
+    //                 if (response == 1) {
+    //                     var msg = "Profile deleted successfullly";
+    //                     $('#delete_message').html(msg);
+    //                     $("#" + id).hide(1200);
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
 
     // check all
     $("#check_all").click(function () {
