@@ -36,6 +36,11 @@
         .form-group input{
             border: 2px solid #ddd;
         }
+        .editable-error-block.ui-state-error{
+            padding: 3px;
+            color: red;
+            font-weight: bold;
+        }
     </style>
 
 </head>

@@ -54,7 +54,9 @@ if (isset($_POST['check_delete'])) {
             <tr>
                 <th>
                     <input type="checkbox" id="check_all" value="select"> Select
-                    <input type="submit" name="check_delete"  onclick="return confirm('Are you sure want to delete this ??? ')" value="delete" class="btn btn-danger">
+                    <input type="submit" name="check_delete"
+                           onclick="return confirm('Are you sure want to delete this ??? ')" value="delete"
+                           class="btn btn-danger">
                 </th>
                 <th>#</th>
                 <th>First</th>
@@ -74,10 +76,16 @@ if (isset($_POST['check_delete'])) {
                         <input type="checkbox" id="checkItem" name="check[]" value="<?php echo $data['id']; ?>">
                     </th>
                     <th><?php echo $i++; ?></th>
-                    <td id="first_name"><?php echo $data['first_name']; ?></td>
-                    <td id="last_name"><?php echo $data['last_name']; ?></td>
+                    <td id="first_name" data-pk="<?php echo $data['id']; ?>">
+                        <?php echo $data['first_name']; ?>
+                    </td>
+                    <td id="last_name" data-pk="<?php echo $data['id']; ?>">
+                        <?php echo $data['last_name']; ?>
+                    </td>
                     <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
-                    <td id="email"><?php echo $data['email']; ?></td>
+                    <td id="email" data-pk="<?php echo $data['id']; ?>">
+                        <?php echo $data['email']; ?>
+                    </td>
                     <td>
                         <a class="btn btn-info" href="edit.php?id=<?php echo $data['id']; ?>">
                             edit
@@ -100,8 +108,16 @@ if (isset($_POST['check_delete'])) {
 
     //turn on to inline update
     $.fn.editable.defaults.mode = 'inline';
-    $(document).ready(function() {
-        $("#first_name,#email,#last_name").editable();
+    $(document).ready(function () {
+        $("#first_name,#email,#last_name").editable({
+            type: 'text',
+            url: 'check/update.php',
+            validate: function (value) {
+                if ($.trim(value) == "") {
+                    return "field must not be an empty";
+                }
+            }
+        });
     });
 
 </script>
