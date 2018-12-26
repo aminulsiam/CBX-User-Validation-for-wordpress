@@ -66,7 +66,7 @@ if (isset($_POST['aminul_form']) && intval($_POST['aminul_form']) == 1) {
             $mail->Username = 'a9e769c03c0a91';        // SMTP username
             $mail->Password = '70ae8cd3cdbce9';        // SMTP password
             $mail->SMTPSecure = 'tls';                 // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 465;                          // TCP port to connect to
+            $mail->Port = 2525;                          // TCP port to connect to
 
             $mail->From = 'aminul@gmail.com';
             $mail->FromName = 'Mailer';
